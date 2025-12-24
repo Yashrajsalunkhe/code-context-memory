@@ -1,0 +1,31 @@
+# Build outputs
+out/
+dist/
+*.vsix
+
+# Dependencies
+node_modules/
+
+# Testing
+.vscode-test/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Environment
+.env
+.env.local
+
+# Temp files
+*.tmp
+.tmp/

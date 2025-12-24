@@ -1,0 +1,176 @@
+{
+  "name": "code-context-memory",
+  "displayName": "Code Context Memory",
+  "description": "A developer memory prosthetic - remember why you wrote code, when you last touched it, and what you were thinking",
+  "version": "0.0.1",
+  "publisher": "yashraj",
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "categories": [
+    "Other",
+    "Notebooks"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yashraj/code-context-memory"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yashraj/code-context-memory/issues"
+  },
+  "homepage": "https://github.com/yashraj/code-context-memory#readme",
+  "keywords": [
+    "memory",
+    "context",
+    "notes",
+    "documentation",
+    "productivity",
+    "developer tools"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeContextMemory.addNote",
+        "title": "Add Context Note",
+        "category": "Context Memory",
+        "icon": "$(add)"
+      },
+      {
+        "command": "codeContextMemory.viewNotes",
+        "title": "View Context Notes",
+        "category": "Context Memory",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "codeContextMemory.deleteNote",
+        "title": "Delete Context Note",
+        "category": "Context Memory",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "codeContextMemory.refreshTree",
+        "title": "Refresh",
+        "category": "Context Memory",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "codeContextMemory.showStaleNotes",
+        "title": "Show Stale Notes (Not Viewed Recently)",
+        "category": "Context Memory",
+        "icon": "$(history)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "codeContextMemory.addNote",
+        "key": "ctrl+shift+n",
+        "mac": "cmd+shift+n",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeContextMemory.viewNotes",
+        "key": "ctrl+shift+m",
+        "mac": "cmd+shift+m",
+        "when": "editorTextFocus"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeContextMemory",
+          "title": "Context Memory",
+          "icon": "$(book)"
+        }
+      ]
+    },
+    "views": {
+      "codeContextMemory": [
+        {
+          "id": "codeContextMemory.notesView",
+          "name": "My Context Notes",
+          "icon": "$(note)",
+          "contextualTitle": "Context Memory"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "codeContextMemory.refreshTree",
+          "when": "view == codeContextMemory.notesView",
+          "group": "navigation"
+        },
+        {
+          "command": "codeContextMemory.showStaleNotes",
+          "when": "view == codeContextMemory.notesView",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "codeContextMemory.addNote",
+          "group": "contextMemory@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codeContextMemory.viewNotes",
+          "group": "contextMemory@2",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codeContextMemory.deleteNote",
+          "group": "contextMemory@3",
+          "when": "editorTextFocus"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "codeContextMemory.addNote",
+          "when": "editorIsOpen"
+        },
+        {
+          "command": "codeContextMemory.viewNotes",
+          "when": "editorIsOpen"
+        },
+        {
+          "command": "codeContextMemory.deleteNote",
+          "when": "editorIsOpen"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test",
+    "vsce:package": "vsce package",
+    "vsce:publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.107.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.27.1",
+    "eslint": "^9.39.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.1"
+  }
+}
