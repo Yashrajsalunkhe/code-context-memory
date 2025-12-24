@@ -12,3 +12,11 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+*.vsix
+icon.svg
+FEATURES.md
+PUBLISHING.md
+QUICKSTART.md
+REPO_SUCCESS.md
+README_GITHUB.md
+CONTRIBUTING.md
