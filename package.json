@@ -13,13 +13,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yashraj/code-context-memory"
+    "url": "https://github.com/Yashrajsalunkhe/code-context-memory"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yashraj/code-context-memory/issues"
+    "url": "https://github.com/Yashrajsalunkhe/code-context-memory/issues"
   },
-  "homepage": "https://github.com/yashraj/code-context-memory#readme",
+  "homepage": "https://github.com/Yashrajsalunkhe/code-context-memory#readme",
   "keywords": [
     "memory",
     "context",

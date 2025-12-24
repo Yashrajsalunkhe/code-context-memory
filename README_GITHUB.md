@@ -206,7 +206,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yashraj/code-context-memory.git
+git clone https://github.com/Yashrajsalunkhe/code-context-memory.git
 cd code-context-memory
 
 # Install dependencies
@@ -244,15 +244,15 @@ src/
 
 Found a bug or have a feature request?
 
-- [Report an issue](https://github.com/yashraj/code-context-memory/issues)
-- [Suggest a feature](https://github.com/yashraj/code-context-memory/issues/new)
+- [Report an issue](https://github.com/Yashrajsalunkhe/code-context-memory/issues)
+- [Suggest a feature](https://github.com/Yashrajsalunkhe/code-context-memory/issues/new)
 
 ---
 
 ## 💬 Support
 
 - ⭐ Star this repo if you find it useful!
-- 🐛 Report issues on [GitHub](https://github.com/yashraj/code-context-memory/issues)
+- 🐛 Report issues on [GitHub](https://github.com/Yashrajsalunkhe/code-context-memory/issues)
 - 💡 Share your use cases and feedback
 
 ---
@@ -261,6 +261,6 @@ Found a bug or have a feature request?
 
 **Built with 🧠 by developers, for developers who forget things.**
 
-[Install Now](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory) • [View Source](https://github.com/yashraj/code-context-memory)
+[Install Now](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory) • [View Source](https://github.com/Yashrajsalunkhe/code-context-memory)
 
 </div>

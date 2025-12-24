@@ -1,10 +1,27 @@
 # Code Context Memory
 
-> **A developer memory prosthetic for VS Code**
+<div align="center">
+
+![Code Context Memory](icon.png)
+
+**A Developer Memory Prosthetic for VS Code**
+
+[![Version](https://img.shields.io/visual-studio-marketplace/v/yashraj.code-context-memory?color=blue&label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/yashraj.code-context-memory)](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/yashraj.code-context-memory)](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory)
+[![License](https://img.shields.io/github/license/yashraj/code-context-memory)](LICENSE)
+
+[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Commands](#-commands) • [Contributing](#-contributing)
+
+</div>
+
+---
+
+## 🧠 What is Code Context Memory?
 
 Remember why you wrote code, when you last touched it, and what you were thinking. Code Context Memory is the missing layer between comments and documentation—your personal, persistent memory for code.
 
-## 🧠 The Problem
+### The Problem
 
 As developers, we constantly forget:
 - **Why** we made specific decisions
@@ -16,9 +33,13 @@ Traditional solutions are inadequate:
 - 🗂️ **Git commits** are hard to search and disconnected from the code
 - 📚 **Documentation** is formal and time-consuming
 
+**Code Context Memory** fills this gap with a personal, editor-native memory system.
+
+---
+
 ## ✨ Features
 
-### 1. 📌 Personal Context Notes
+### 📌 Personal Context Notes
 
 Add quick, personal notes to any line of code explaining your thought process:
 
@@ -26,9 +47,7 @@ Add quick, personal notes to any line of code explaining your thought process:
 - Or use keyboard shortcut: `Ctrl+Shift+N` (Mac: `Cmd+Shift+N`)
 - Notes appear as gutter icons with rich hover tooltips
 
-![Add Note Demo](images/add-note.gif)
-
-### 2. 🔍 Automatic Context Resurfacing
+### 🔍 Automatic Context Resurfacing
 
 The extension remembers when you last worked on files and reminds you:
 
@@ -36,7 +55,7 @@ The extension remembers when you last worked on files and reminds you:
 - Shows your context notes automatically
 - "You last worked on this 3 days ago—here's what you were thinking"
 
-### 3. 📊 Context Memory Sidebar
+### 📊 Context Memory Sidebar
 
 Browse all your notes in one place:
 
@@ -45,7 +64,7 @@ Browse all your notes in one place:
 - Click to jump to any note
 - Shows note count and creation dates
 
-### 4. ⏰ Stale Note Detection
+### ⏰ Stale Note Detection
 
 Find notes you haven't revisited in a while:
 
@@ -53,24 +72,41 @@ Find notes you haven't revisited in a while:
 - Reminds you of forgotten context
 - Perfect for long-running projects
 
-### 5. 💡 Smart Status Bar
+### 💡 Smart Status Bar
 
 See at a glance:
 - How many notes are in the current file
 - When you last accessed this file
 - Click to view all notes
 
+---
+
+## 📦 Installation
+
+### From VS Code Marketplace
+
+1. Open VS Code
+2. Press `Ctrl+Shift+X` (or `Cmd+Shift+X` on Mac)
+3. Search for "Code Context Memory"
+4. Click **Install**
+
+### From .vsix File
+
+```bash
+code --install-extension code-context-memory-0.0.1.vsix
+```
+
+---
+
 ## 🚀 Usage
 
 ### Adding Notes
 
-```
 1. Place cursor on a line of code
-2. Press Ctrl+Shift+N (Cmd+Shift+N on Mac)
+2. Press `Ctrl+Shift+N` (Cmd+Shift+N on Mac)
    OR right-click → "Add Context Note"
 3. Type your note (e.g., "Using this pattern because X causes Y issue")
 4. Press Enter
-```
 
 ### Viewing Notes
 
@@ -84,6 +120,8 @@ See at a glance:
 - Right-click → "Delete Context Note" to remove
 - Notes persist across VS Code sessions
 - Stored locally in workspace state
+
+---
 
 ## 🎯 Use Cases
 
@@ -111,29 +149,20 @@ See at a glance:
 → Notes show: "Refactoring auth flow - 60% done, next: add MFA support"
 ```
 
-## ⌨️ Keyboard Shortcuts
+---
 
-| Command | Windows/Linux | Mac |
-|---------|---------------|-----|
-| Add Note | `Ctrl+Shift+N` | `Cmd+Shift+N` |
-| View Notes | `Ctrl+Shift+M` | `Cmd+Shift+M` |
+## ⌨️ Commands
 
-## 🎨 Commands
+| Command | Shortcut | Description |
+|---------|----------|-------------|
+| Add Context Note | `Ctrl+Shift+N` / `Cmd+Shift+N` | Add a note at cursor position |
+| View Context Notes | `Ctrl+Shift+M` / `Cmd+Shift+M` | Browse notes in current file |
+| Delete Context Note | - | Remove note at cursor |
+| Show Stale Notes | - | Find notes not viewed in 7+ days |
 
-Access via Command Palette (`Ctrl+Shift+P`):
+Access all commands via Command Palette (`Ctrl+Shift+P`) and search for "Context Memory".
 
-- `Context Memory: Add Context Note` - Add a note at cursor
-- `Context Memory: View Context Notes` - Browse notes in current file
-- `Context Memory: Delete Context Note` - Remove note at cursor
-- `Context Memory: Show Stale Notes` - Find forgotten notes
-
-## 🔧 How It Works
-
-1. **Notes are stored** in VS Code's global state (survives restarts)
-2. **File access times** are tracked automatically
-3. **Gutter decorations** mark lines with notes
-4. **Hover providers** show note content
-5. **Background checks** detect when you return to old code
+---
 
 ## 🆚 Why Not Just Use...?
 
@@ -144,14 +173,17 @@ Access via Command Palette (`Ctrl+Shift+P`):
 | **CodeTour** | Linear walkthroughs only | Free-form, async, for your workflow |
 | **TODO Comments** | No memory of when/why | Tracks time, reminds you automatically |
 
-## 📦 Storage
+---
 
-- Notes stored in **VS Code Global State** (not in workspace)
-- Persists across:
-  - VS Code restarts
-  - Workspace switches
-  - Extension updates
-- No cloud sync (your notes stay local)
+## 🛠️ Technology Stack
+
+- **Language**: TypeScript
+- **Platform**: VS Code Extension API
+- **Storage**: VS Code Global State (local, persistent)
+- **Build**: esbuild
+- **Size**: ~20 KB (lightweight!)
+
+---
 
 ## 🛣️ Roadmap
 
@@ -161,42 +193,74 @@ Access via Command Palette (`Ctrl+Shift+P`):
 - [ ] AI-powered context suggestions
 - [ ] Team sharing (optional)
 - [ ] Integration with git blame
-
-## 🐛 Known Issues
-
-- Notes are file-path based (moving files loses notes)
-- No multi-line note support yet
-- Storage is local only (no sync between machines)
-
-## 🤝 Contributing
-
-This is an open-source project! Contributions welcome.
-
-## 📄 License
-
-MIT
+- [ ] Tags and categories
+- [ ] Note templates
 
 ---
 
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/Yashrajsalunkhe/code-context-memory.git
+cd code-context-memory
+
+# Install dependencies
+npm install
+
+# Start development
+npm run watch
+
+# Press F5 to launch Extension Development Host
+```
+
+### Project Structure
+
+```
+src/
+├── extension.ts       # Main activation
+├── storage.ts        # Data persistence
+├── noteManager.ts    # Note CRUD operations
+├── decorations.ts    # Gutter icons
+├── hoverProvider.ts  # Tooltips & status bar
+├── treeView.ts       # Sidebar tree
+├── resurfacer.ts     # Time-based features
+└── types.ts         # TypeScript interfaces
+```
+
+---
+
+## 📄 License
+
+[MIT](LICENSE) © 2025 Yashraj
+
+---
+
+## 🐛 Issues & Feedback
+
+Found a bug or have a feature request?
+
+- [Report an issue](https://github.com/Yashrajsalunkhe/code-context-memory/issues)
+- [Suggest a feature](https://github.com/Yashrajsalunkhe/code-context-memory/issues/new)
+
+---
+
+## 💬 Support
+
+- ⭐ Star this repo if you find it useful!
+- 🐛 Report issues on [GitHub](https://github.com/Yashrajsalunkhe/code-context-memory/issues)
+- 💡 Share your use cases and feedback
+
+---
+
+<div align="center">
+
 **Built with 🧠 by developers, for developers who forget things.**
 
-## Following extension guidelines
+[Install Now](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory) • [View Source](https://github.com/Yashrajsalunkhe/code-context-memory)
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+</div>

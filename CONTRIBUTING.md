@@ -6,7 +6,7 @@ Thank you for considering contributing to Code Context Memory! 🎉
 
 ### Reporting Bugs
 
-1. Check if the issue already exists in [Issues](https://github.com/yashraj/code-context-memory/issues)
+1. Check if the issue already exists in [Issues](https://github.com/Yashrajsalunkhe/code-context-memory/issues)
 2. Use the bug report template
 3. Include:
    - VS Code version
@@ -17,7 +17,7 @@ Thank you for considering contributing to Code Context Memory! 🎉
 
 ### Suggesting Features
 
-1. Check [existing feature requests](https://github.com/yashraj/code-context-memory/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+1. Check [existing feature requests](https://github.com/Yashrajsalunkhe/code-context-memory/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
 2. Create a new issue with the "enhancement" label
 3. Describe:
    - The problem it solves
@@ -129,7 +129,7 @@ Launch Extension Development Host:
 
 ## 💬 Questions?
 
-- Open a [Discussion](https://github.com/yashraj/code-context-memory/discussions)
+- Open a [Discussion](https://github.com/Yashrajsalunkhe/code-context-memory/discussions)
 - Tag maintainers in issues
 - Be patient and respectful
 
