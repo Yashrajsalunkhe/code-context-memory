@@ -2,6 +2,14 @@
 
 All notable changes to the "Code Context Memory" extension will be documented in this file.
 
+## [0.0.2] - 2024-12-24
+
+### Updated
+- 📝 Repository URLs updated to match GitHub repository
+- 📚 Enhanced README with professional formatting
+- 🔗 Added proper GitHub integration
+- 📦 Package configuration updated
+
 ## [0.0.1] - 2024-12-24
 
 ### Initial Release 🎉

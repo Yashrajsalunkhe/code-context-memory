@@ -2,7 +2,7 @@
   "name": "code-context-memory",
   "displayName": "Code Context Memory",
   "description": "A developer memory prosthetic - remember why you wrote code, when you last touched it, and what you were thinking",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "yashraj",
   "engines": {
     "vscode": "^1.107.0"
