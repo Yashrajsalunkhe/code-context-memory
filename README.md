@@ -9,7 +9,8 @@
 [![Version](https://img.shields.io/visual-studio-marketplace/v/yashraj.code-context-memory?color=blue&label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/yashraj.code-context-memory)](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory)
 [![Rating](https://img.shields.io/visual-studio-marketplace/r/yashraj.code-context-memory)](https://marketplace.visualstudio.com/items?itemName=yashraj.code-context-memory)
-[![License](https://img.shields.io/github/license/yashraj/code-context-memory)](LICENSE)
+[![GitHub Release](https://img.shields.io/github/v/release/Yashrajsalunkhe/code-context-memory)](https://github.com/Yashrajsalunkhe/code-context-memory/releases)
+[![License](https://img.shields.io/github/license/Yashrajsalunkhe/code-context-memory)](LICENSE)
 
 [Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Commands](#-commands) • [Contributing](#-contributing)
 
