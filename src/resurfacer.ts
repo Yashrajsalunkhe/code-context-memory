@@ -40,37 +40,38 @@ export class ContextResurfacer {
         }
 
         const filePath = editor.document.uri.fsPath;
-        const notes = this.storage.getNotesForFile(filePath);
         
-        if (notes.length === 0) {
-            // No notes for this file, just record access and return
-            this.storage.recordFileAccess(filePath);
-            return;
-        }
-
-        // Check if we've already notified about this file in this session
-        if (this.notifiedFiles.has(filePath)) {
-            // Already notified, just record access and return
-            this.storage.recordFileAccess(filePath);
-            return;
-        }
-
-        const lastAccess = this.storage.getLastAccess(filePath);
-        
-        // Check if returning after a while
-        if (lastAccess) {
-            const timeSinceAccess = Date.now() - lastAccess;
-            const hoursSince = timeSinceAccess / (1000 * 60 * 60);
-
-            // If been away for more than 24 hours, show a reminder
-            if (hoursSince >= 24) {
-                this.notifiedFiles.add(filePath); // Mark as notified
-                this.showReturningContextNotification(filePath, notes, hoursSince);
+        try {
+            const notes = this.storage.getNotesForFile(filePath);
+            
+            if (notes.length === 0) {
+                // No notes for this file
+                return;
             }
-        }
 
-        // Record current access time
-        this.storage.recordFileAccess(filePath);
+            // Check if we've already notified about this file in this session
+            if (this.notifiedFiles.has(filePath)) {
+                // Already notified, nothing more to do
+                return;
+            }
+
+            const lastAccess = this.storage.getLastAccess(filePath);
+            
+            // Check if returning after a while (only relevant if there was a previous access)
+            if (lastAccess) {
+                const timeSinceAccess = Date.now() - lastAccess;
+                const hoursSince = timeSinceAccess / (1000 * 60 * 60);
+
+                // If been away for more than 24 hours, show a reminder
+                if (hoursSince >= 24) {
+                    this.notifiedFiles.add(filePath); // Mark as notified
+                    this.showReturningContextNotification(filePath, notes, hoursSince);
+                }
+            }
+        } finally {
+            // Always record access time, regardless of notification state
+            this.storage.recordFileAccess(filePath);
+        }
     }
 
     /**
