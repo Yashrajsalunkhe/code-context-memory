@@ -30,9 +30,8 @@ export class ContextResurfacer {
 
     /**
      * Check if user is returning to code with context
-     * @param immediate - If true, check immediately regardless of interval
      */
-    checkForReturningContext(immediate: boolean = false): void {
+    checkForReturningContext(): void {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             return;

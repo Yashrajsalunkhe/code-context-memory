@@ -99,7 +99,7 @@ export function activate(context: vscode.ExtensionContext) {
             statusBar.updateForFile(editor.document.uri.fsPath);
             // Check for returning context immediately when editor changes
             // This will also record file access
-            resurfacer.checkForReturningContext(true);
+            resurfacer.checkForReturningContext();
         }
         treeProvider.refresh();
     };
@@ -139,7 +139,8 @@ export function activate(context: vscode.ExtensionContext) {
         onDidChangeActiveTextEditor,
         onDidChangeTextDocument,
         decorationProvider,
-        statusBar
+        statusBar,
+        { dispose: () => resurfacer.stop() }
     );
 }
 
