@@ -69,7 +69,8 @@ export class ContextResurfacer {
                 }
             }
         } finally {
-            // Always record access time, regardless of notification state
+            // Always record access time, regardless of notification state or early returns.
+            // The finally block executes even with early returns in the try block.
             this.storage.recordFileAccess(filePath);
         }
     }
