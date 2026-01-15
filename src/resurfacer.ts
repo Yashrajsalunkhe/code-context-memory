@@ -8,6 +8,7 @@ import { ContextNote } from './types';
 export class ContextResurfacer {
     private static readonly CHECK_INTERVAL = 1000 * 60; // Check every minute
     private intervalId?: NodeJS.Timeout;
+    private notifiedFiles: Set<string> = new Set(); // Track files that have been notified in this session
 
     constructor(private storage: StorageManager) {}
 
@@ -28,34 +29,49 @@ export class ContextResurfacer {
     }
 
     /**
-     * Check if user is returning to code with context
+     * Check if user is returning to code with context.
+     * This method is public to allow immediate checks when editor changes,
+     * in addition to the periodic interval checks.
      */
-    private checkForReturningContext(): void {
+    checkForReturningContext(): void {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             return;
         }
 
         const filePath = editor.document.uri.fsPath;
-        const notes = this.storage.getNotesForFile(filePath);
-        const lastAccess = this.storage.getLastAccess(filePath);
-
-        if (notes.length === 0) {
-            return;
-        }
-
-        // Record current access
-        this.storage.recordFileAccess(filePath);
-
-        // Check if returning after a while
-        if (lastAccess) {
-            const timeSinceAccess = Date.now() - lastAccess;
-            const hoursSince = timeSinceAccess / (1000 * 60 * 60);
-
-            // If been away for more than 24 hours, show a reminder
-            if (hoursSince >= 24) {
-                this.showReturningContextNotification(filePath, notes, hoursSince);
+        
+        try {
+            const notes = this.storage.getNotesForFile(filePath);
+            
+            if (notes.length === 0) {
+                // No notes for this file
+                return;
             }
+
+            // Check if we've already notified about this file in this session
+            if (this.notifiedFiles.has(filePath)) {
+                // Already notified, nothing more to do
+                return;
+            }
+
+            const lastAccess = this.storage.getLastAccess(filePath);
+            
+            // Check if returning after a while (only relevant if there was a previous access)
+            if (lastAccess) {
+                const timeSinceAccess = Date.now() - lastAccess;
+                const hoursSince = timeSinceAccess / (1000 * 60 * 60);
+
+                // If been away for more than 24 hours, show a reminder
+                if (hoursSince >= 24) {
+                    this.notifiedFiles.add(filePath); // Mark as notified
+                    this.showReturningContextNotification(filePath, notes, hoursSince);
+                }
+            }
+        } finally {
+            // Always record access time, regardless of notification state or early returns.
+            // The finally block executes even with early returns in the try block.
+            this.storage.recordFileAccess(filePath);
         }
     }
 
