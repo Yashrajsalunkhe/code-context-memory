@@ -29,7 +29,9 @@ export class ContextResurfacer {
     }
 
     /**
-     * Check if user is returning to code with context
+     * Check if user is returning to code with context.
+     * This method is public to allow immediate checks when editor changes,
+     * in addition to the periodic interval checks.
      */
     checkForReturningContext(): void {
         const editor = vscode.window.activeTextEditor;
@@ -39,19 +41,22 @@ export class ContextResurfacer {
 
         const filePath = editor.document.uri.fsPath;
         const notes = this.storage.getNotesForFile(filePath);
-        const lastAccess = this.storage.getLastAccess(filePath);
-
+        
         if (notes.length === 0) {
+            // No notes for this file, just record access and return
+            this.storage.recordFileAccess(filePath);
             return;
         }
 
         // Check if we've already notified about this file in this session
         if (this.notifiedFiles.has(filePath)) {
-            // Record current access but don't show notification again
+            // Already notified, just record access and return
             this.storage.recordFileAccess(filePath);
             return;
         }
 
+        const lastAccess = this.storage.getLastAccess(filePath);
+        
         // Check if returning after a while
         if (lastAccess) {
             const timeSinceAccess = Date.now() - lastAccess;
@@ -64,7 +69,7 @@ export class ContextResurfacer {
             }
         }
 
-        // Record current access
+        // Record current access time
         this.storage.recordFileAccess(filePath);
     }
 
