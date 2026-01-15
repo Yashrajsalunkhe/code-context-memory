@@ -8,6 +8,7 @@ import { ContextNote } from './types';
 export class ContextResurfacer {
     private static readonly CHECK_INTERVAL = 1000 * 60; // Check every minute
     private intervalId?: NodeJS.Timeout;
+    private notifiedFiles: Set<string> = new Set(); // Track files that have been notified in this session
 
     constructor(private storage: StorageManager) {}
 
@@ -29,8 +30,9 @@ export class ContextResurfacer {
 
     /**
      * Check if user is returning to code with context
+     * @param immediate - If true, check immediately regardless of interval
      */
-    private checkForReturningContext(): void {
+    checkForReturningContext(immediate: boolean = false): void {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             return;
@@ -44,8 +46,12 @@ export class ContextResurfacer {
             return;
         }
 
-        // Record current access
-        this.storage.recordFileAccess(filePath);
+        // Check if we've already notified about this file in this session
+        if (this.notifiedFiles.has(filePath)) {
+            // Record current access but don't show notification again
+            this.storage.recordFileAccess(filePath);
+            return;
+        }
 
         // Check if returning after a while
         if (lastAccess) {
@@ -54,9 +60,13 @@ export class ContextResurfacer {
 
             // If been away for more than 24 hours, show a reminder
             if (hoursSince >= 24) {
+                this.notifiedFiles.add(filePath); // Mark as notified
                 this.showReturningContextNotification(filePath, notes, hoursSince);
             }
         }
+
+        // Record current access
+        this.storage.recordFileAccess(filePath);
     }
 
     /**

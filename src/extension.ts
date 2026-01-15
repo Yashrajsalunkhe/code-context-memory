@@ -97,7 +97,9 @@ export function activate(context: vscode.ExtensionContext) {
         if (editor) {
             decorationProvider.updateDecorations(editor);
             statusBar.updateForFile(editor.document.uri.fsPath);
-            storage.recordFileAccess(editor.document.uri.fsPath);
+            // Check for returning context immediately when editor changes
+            // This will also record file access
+            resurfacer.checkForReturningContext(true);
         }
         treeProvider.refresh();
     };
